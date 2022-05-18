@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "nodemon ./bin/www",
+    "test": "node ./bin/www",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "nodemon ./bin/www",
+    "dev:server": "node ./bin/www",
     "dev:client": "cd ../bkksg_frontend && PORT=3002 npm start"
   },
   "dependencies": {
