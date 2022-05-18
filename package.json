@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "node ./bin/www",
+    "dev:server": "nodemon ./bin/www",
     "dev:client": "cd ../bkksg_frontend && PORT=3002 npm start"
   },
   "dependencies": {
@@ -24,5 +24,7 @@
     "mysql": "^2.18.1",
     "uuid": "^8.3.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
