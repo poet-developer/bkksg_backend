@@ -30,7 +30,6 @@ module.exports = {
       else if(info.type === '3' || info.type === '4') _c = id.replace("raw/","")
 
       _public = filterPublic(info.public);
-
       await db.query("INSERT INTO content (title, description, cover_src, type_id, public) VALUES (?, ?, ?, ?, ?)", [info.title, info.desc, _c , info.type, _public] ,(err, result) => {
         if (err) throw err;
         console.log('Uploded Contents!');
@@ -62,16 +61,18 @@ module.exports = {
 
   delete: async (req, res) => {
     const info = req.body;
+    const params = {
+          Bucket: "bkksg-images", 
+          Key: `raw/${info.cover_src}`
+        }
     try{
     await db.query(`DELETE FROM content WHERE id =?`,[info.id],function(error,result){
       if(error) throw error;
       if(info.type === 3 || info.type === 4) {
-        s3.deleteObject({Bucket: "bkksg-images",
-                         Key: `raw/${info.cover_src}`},
-                        (err, data) =>{
+        s3.deleteObject(params,(err) =>{
                           if(err) throw err;
                         });
-        console.log('Delete Completed.');                
+        console.log('Delete Completed.');             
         res.status(200).send();
       }
     })

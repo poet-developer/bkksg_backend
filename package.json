@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "pm2 start --watch ./bin/www",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "nodemon ./bin/www",
+    "dev:server": "pm2 start --watch ./bin/www",
     "dev:client": "cd ../bkksg_frontend && PORT=3002 npm start"
   },
   "dependencies": {
@@ -25,6 +25,6 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "pm2": "^5.2.0"
   }
 }
